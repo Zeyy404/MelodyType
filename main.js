@@ -23,6 +23,7 @@ class BootScene extends Phaser.Scene {
 	});
     }
 
+    // Transition to the song selection scene
     transitionToSongSelection() {
 	this.tweens.add({
 	    targets: [this.titleText, this.sloganText],
@@ -44,6 +45,7 @@ class SongSelectionScene extends Phaser.Scene {
 	super({ key: 'SongSelectionScene' });
     }
 
+    // Initialize the scene with data
     init(data) {
 	this.difficulty = data.difficulty;
     }
@@ -62,11 +64,12 @@ class SongSelectionScene extends Phaser.Scene {
 	});
 
 	const songs = [
-	    { artist: 'Passenger', title: 'Let Her Go', musicUrl: 'assets/audio/Let_her_go.mp3', difficulty: 'Easy' },
-	    { artist: 'John Legend', title: 'All of Me', musicUrl: 'assets/audio/All_of_Me.mp3', difficulty: 'Medium' },
-	    { artist: 'Backstreet Boys', title: 'I Want it That Way', musicUrl: 'assets/audio/I_Want_It_That_Way.mp3', difficulty: 'Hard' }
+	    { artist: 'Passenger', title: 'Let Her Go', musicUrl: 'assets/audio/Let_her_go.mp3' },
+	    { artist: 'John Legend', title: 'All of Me', musicUrl: 'assets/audio/All_of_Me.mp3' },
+	    { artist: 'Backstreet Boys', title: 'I Want it That Way', musicUrl: 'assets/audio/I_Want_It_That_Way.mp3' }
 	];
 
+	// Create interactive buttons for each song
 	songs.forEach((song, index) => {
 	    const button = this.add.text(width / 2, 250 + index * 50, `${song.artist} - ${song.title}`, { fontSize: (height * 0.04) + 'px', fill: '#fff' }).setOrigin(0.5);
 	    button.setInteractive();
@@ -112,10 +115,12 @@ class GameScene extends Phaser.Scene {
 	    this.scene.start('SongSelectionScene');
 	});
 
+	// Start the countdown before the game starts
 	this.startCountdown(3);
 	this.playMusic(this.song.musicUrl);
     }
 
+    // Start the countdown timer
     startCountdown(timeLeft) {
 	const width = this.scale.width;
 	const height = this.scale.height;
@@ -147,6 +152,7 @@ class GameScene extends Phaser.Scene {
 	this.startTime = Date.now();
     }
 
+    // Play the selected song
     playMusic(musicUrl) {
 	if (this.music) {
 	    this.music.stop();
@@ -167,6 +173,7 @@ class GameScene extends Phaser.Scene {
 	this.music.play();
     }
 
+    // Fetch lyrics from an API
     fetchLyrics(artist, title) {
 	fetch(`https://api.lyrics.ovh/v1/${artist}/${title}`)
 	    .then(response => response.json())
@@ -183,6 +190,7 @@ class GameScene extends Phaser.Scene {
 	    .catch(error => console.error('Error fetching lyrics:', error));
     }
 
+    // Display the lyrics on the screen
     displayLyrics() {
 	const width = this.scale.width;
 	const height = this.scale.height;
@@ -208,6 +216,7 @@ class GameScene extends Phaser.Scene {
 	this.currentText = this.textObjects[this.currentIndex];
     }
 
+    // Handle key press events
     handleKeyPress(event) {
 	const inputChar = event.key;
 
@@ -283,6 +292,7 @@ class GameScene extends Phaser.Scene {
     }
 }
 
+// Game configuration
 const config = {
     type: Phaser.AUTO,
     width: window.innerWidth,
@@ -300,6 +310,7 @@ let music = null;
 let lyrics = [];
 let currentIndex = 0;
 
+// Handle window resize
 window.addEventListener('resize', () => {
     game.scale.resize(window.innerWidth, window.innerHeight);
 });
