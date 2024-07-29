@@ -9,6 +9,7 @@ Welcome to **MelodyType**! This rhythm-based typing game is designed to make pra
 Typing is an essential skill for software engineers but is often overlooked in favor of other technical skills. MelodyType was created to provide a fun and interactive platform for improving typing speed and accuracy, inspired by the joy of music. Typing to the beat of a song combines rhythm and repetition, making the practice more enjoyable and effective.
 
 ### Links 🔗
+- [MelodyType]( https://zeyy404.github.io/MelodyType/)
 - [Final Project Blog Article](https://medium.com/@zainab.salih/the-journey-of-creating-melodytype-d0b893ea9392)
 - [Author's LinkedIn](https://www.linkedin.com/in/zainab-salih/)
 
